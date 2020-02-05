@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res) => {
     const { id } = req.params
     try {
         const rowsDeleted = await db('posts').where('id', id).delete()
-        res.status(201).json({deleted: rowsDeleted})
+        res.status(200).json({deleted: rowsDeleted})
     } catch(err) {
         res.status(500).json({message: "failed to update post"})
     }
