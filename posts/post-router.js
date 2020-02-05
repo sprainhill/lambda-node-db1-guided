@@ -41,7 +41,15 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+    const { id } = req.params
+    const postData = req.body;
+    try {
+        const rowsUpdate = await db('posts').where('id', id).update(postData)
+        res.status(201).json(rowsUpdated)
+    } catch(err) {
+        res.status(500).json({message: "failed to update post"})
+    }
 
 });
 
